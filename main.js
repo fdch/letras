@@ -48,7 +48,8 @@ function getLit(sheet, arr)
     for (var i in entry)
     {
       var e = entry[i];
-      arr.push(e.gsx$a.$t);
+      var word = e.gsx$a.$t;
+      arr.push(word);
     }
   });
 }
@@ -59,5 +60,5 @@ $(document).ready(function(x) {
   h = $(window).height();
   $("body").append([titleData, containers]);
   getLit(lit, words);
-  $("#content").append["<p>"+words[0]+"</p>"];
+  $("#content").append("<p>"+words[0]+"</p>");
 });
