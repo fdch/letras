@@ -50,6 +50,8 @@ function getLit(sheet, arr)
       var e = entry[i];
       var word = e.gsx$a.$t;
       arr.push(word);
+      var wording = "<p>" + word + "</p>";
+  	  $("#content").append(wording);	
     }
   });
 }
@@ -60,9 +62,9 @@ $(document).ready(function(x) {
   h = $(window).height();
   $("body").append([titleData, containers]);
   getLit(lit, words);
-  for (var i = 0; i < words.length; i++){
-  	var wording = "<p>" + words[i] + "</p>";
-  	$("#content").append(wording);	
-  }
+  //for (var i = 0; i < words.length; i++){
+  //	var wording = "<p>" + words[i] + "</p>";
+  //	$("#content").append(wording);	
+  //}
   
 });
