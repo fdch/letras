@@ -51,7 +51,7 @@ function getLit(x,sheet)
     	var e = entry[i];
     	var word = e.gsx$a.$t;
     	var thres1 = 4;
-		var randomNumber = Math.Random() * 100;
+		var randomNumber = Math.Random() * 10000;
 		if (randomNumber < thres1) {
    	  		var wording = word + " ";
   	  		poem.push(wording);
