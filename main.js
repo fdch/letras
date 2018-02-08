@@ -40,7 +40,7 @@ function loadJSON(x,callback)
 
 
 
-function getLit(sheet)
+function getLit(x,sheet)
 {
   loadJSON(sheet, function(response) {
   	var poem=[];
@@ -58,7 +58,7 @@ function getLit(sheet)
 		}
     }
     for (var k in poem){
-        $("#content").append(["<p>",poem[k],"</p>"]);
+        x.append(["<p>",poem[k],"</p>"]);
       }
   });
 }
@@ -68,5 +68,5 @@ $(document).ready(function(x) {
   if ((w = $(window).width()) >= 600) w = w*0.5;
   h = $(window).height();
   $("body").append([titleData, containers]);
-  getLit(lit);  
+  getLit($("#content"),lit);  
 });
