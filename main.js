@@ -31,6 +31,11 @@ function loadJSON(x,callback)
   xobj.send(null);  
 }
 
+function rtimeMake(x)
+{
+	return(Math.floor(Math.random()*x));
+}
+
 
 
 function getLit(x,sheet)
@@ -64,5 +69,6 @@ $(document).ready(function(x) {
   if ((w = $(window).width()) >= 600) w = w*0.5;
   h = $(window).height();
   $("body").append(containers);
-  getLit($("#content"),lit);  
+  var rtime = rtimeMake(10000);
+  setTimeout([getLit($("#content"),lit),rtime=rtimeMake(10000)], rtime); 
 });
