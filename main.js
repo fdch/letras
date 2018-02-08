@@ -40,7 +40,7 @@ function loadJSON(x,callback)
 
 words = [];
 
-function getLit(sheet, arr)
+function getLit(sheet)
 {
   loadJSON(sheet, function(response) {
     var f = JSON.parse(response);
@@ -49,9 +49,9 @@ function getLit(sheet, arr)
     {
       var e = entry[i];
       var word = e.gsx$a.$t;
-      arr.push(word);
-      var wording = "<p>" + word + "</p>";
-  	  $("#content").append(wording);	
+      words.push(word);
+      //var wording = "<p>" + word + "</p>";
+  	  //$("#content").append(wording);	
     }
   });
 }
@@ -61,10 +61,10 @@ $(document).ready(function(x) {
   if ((w = $(window).width()) >= 600) w = w*0.5;
   h = $(window).height();
   $("body").append([titleData, containers]);
-  getLit(lit, words);
-  //for (var i = 0; i < words.length; i++){
-  //	var wording = "<p>" + words[i] + "</p>";
-  //	$("#content").append(wording);	
-  //}
+  getLit(lit);
+  for (var i = 0; i < words.length; i++){
+  	var wording = "<p>" + words[i] + "</p>";
+  	$("#content").append(wording);	
+  }
   
 });
