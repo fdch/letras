@@ -40,32 +40,33 @@ function loadJSON(x,callback)
 
 
 
-function getLit(sheet, arr)
+function getLit(sheet)
 {
   loadJSON(sheet, function(response) {
+  	var poem=[];
     var f = JSON.parse(response);
     var entry = f.feed.entry;
     for (var i in entry)
     {
-      var e = entry[i];
-      var word = e.gsx$a.$t;
-      arr.push(word);
-      //var wording = "<p>" + word + "</p>";
-  	  //$("#content").append(wording);	
+    	var e = entry[i];
+    	var word = e.gsx$a.$t;
+    	var thres1 = 4;
+		var randomNumber = random() * 100;
+		if (randomNumber < thres1) {
+   	  		var wording = word + " ";
+  	  		poem.push(wording);
+		}
     }
+    for (var k in poem){
+        $("#content").append(["<p>",poem[k],"</p>"]);
+      }
   });
 }
 
 
 $(document).ready(function(x) {
-  words = [];
   if ((w = $(window).width()) >= 600) w = w*0.5;
   h = $(window).height();
   $("body").append([titleData, containers]);
-  getLit(lit, words);
-  for (var i in words){
-  	var wording = "<p>" + words[i] + "</p>";
-  	$("#content").append(wording);	
-  }
-  
+  getLit(lit, words);  
 });
