@@ -38,9 +38,9 @@ function loadJSON(x,callback)
   xobj.send(null);  
 }
 
-words = [];
 
-function getLit(sheet)
+
+function getLit(sheet, arr)
 {
   loadJSON(sheet, function(response) {
     var f = JSON.parse(response);
@@ -49,7 +49,7 @@ function getLit(sheet)
     {
       var e = entry[i];
       var word = e.gsx$a.$t;
-      words.push(word);
+      arr.push(word);
       //var wording = "<p>" + word + "</p>";
   	  //$("#content").append(wording);	
     }
@@ -58,10 +58,11 @@ function getLit(sheet)
 
 
 $(document).ready(function(x) {
+  words = [];
   if ((w = $(window).width()) >= 600) w = w*0.5;
   h = $(window).height();
   $("body").append([titleData, containers]);
-  getLit(lit);
+  getLit(lit, words);
   for (var i = 0; i < words.length; i++){
   	var wording = "<p>" + words[i] + "</p>";
   	$("#content").append(wording);	
