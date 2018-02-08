@@ -1,17 +1,10 @@
 var url = "https://fdch.github.io/letras";
 var repo = "https://github.com/fdch/letras";
 var email = "fch226@nyu.edu";
-var title = "Letras";
-var subtitle = "...";
 var https = "https://spreadsheets.google.com/feeds/list/";
 var altjson = "/public/values?alt=json";
 var w, h;
 var spreadsheetID = "1umuxkyz_4xrxgX_qS-tmOMK7CqGuNS67KFzRhFGuP5A/";
-var titleData = "\
-<header>\
-<h1 onclick=\"location.href='"+ url + "'\">"+ title +"</h1>\
-<h2 onclick=\"location.href='" + url + "'\">" + subtitle + "</h2>\
-</header>";
 var containers = "<div id=content></div>";
 var lit = https + spreadsheetID + "1" + altjson;
 
@@ -67,6 +60,6 @@ function getLit(x,sheet)
 $(document).ready(function(x) {
   if ((w = $(window).width()) >= 600) w = w*0.5;
   h = $(window).height();
-  $("body").append([titleData, containers]);
+  $("body").append(containers);
   getLit($("#content"),lit);  
 });
