@@ -63,7 +63,7 @@ $(document).ready(function(x) {
   h = $(window).height();
   $("body").append([titleData, containers]);
   getLit(lit, words);
-  for (var i = 0; i < words.length; i++){
+  for (var i in words){
   	var wording = "<p>" + words[i] + "</p>";
   	$("#content").append(wording);	
   }
