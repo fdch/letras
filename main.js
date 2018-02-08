@@ -46,12 +46,15 @@ function getLit(x,sheet)
     	var thres1 = 4;
 		var randomNumber = Math.random() * 10000;
 		if (randomNumber < thres1) {
-   	  		var wording = word + " ";
+			var xpos = Math.random() * w/2 + w/2;
+			var ypos = Math.random() * h/2 + h/2;
+
+   	  		var wording = "<span style=\"display:inline;float:none;margin-left:"+xpos+";margin-top:"+ypos+"\">" + word + "</span>";
   	  		poem.push(wording);
 		}
     }
     for (var k in poem){
-        x.append(["<p>",poem[k],"</p>"]);
+        x.append(poem[k]);
       }
   });
 }
