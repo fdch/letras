@@ -49,7 +49,7 @@ function getLit(x,sheet)
 			var xpos = Math.random() * w/2 + w/2;
 			var ypos = Math.random() * h/2 + h/2;
 
-   	  		var wording = "<span style=\"display:inline;float:none;margin-left:"+xpos+";margin-top:"+ypos+"\">" + word + "</span>";
+   	  		var wording = "<p style=\"display:inline;float:none;margin-left:"+xpos+";margin-top:"+ypos+"\">" + word + "</p>";
   	  		poem.push(wording);
 		}
     }
