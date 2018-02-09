@@ -6,7 +6,7 @@ var altjson = "/public/values?alt=json";
 var w, h;
 var spreadsheetID = "1umuxkyz_4xrxgX_qS-tmOMK7CqGuNS67KFzRhFGuP5A/";
 var containers = "<div id=content></div>";
-var lit = https + spreadsheetID + "1" + altjson;
+var lit = https + spreadsheetID + "2" + altjson;
 
 function linkify(x)
 {

@@ -1,0 +1,36 @@
+#!/bin/bash
+# Set maximum number of lines per column (e.g., Google Sheets's limit)
+LINESPLIT=40999
+if [[ $1 ]]
+then
+	# Get the text from the internet (e.g., Project Gutemberg in Plain text)
+	WEBSITE=$(echo $1 | cut -d '/' -f 3 | cut -d . -f 2)
+	curl $1 > tempcurl
+else
+	echo "Argument 1 is link to text file (e.g., Project Gutemberg in Plain text)"
+	exit
+fi
+
+if [ $WEBSITE == "gutenberg" ]
+then
+	# This is necessary to remove Project Gutemberg's licence:
+	BEGINPOINT=$(grep -nr "\*\*\* START OF" tempcurl  | cut -d : -f 2)
+	BEGINPOINT=$(echo $BEGINPOINT | cut -d ' ' -f 1)
+	((BEGINPOINT=$BEGINPOINT+10))
+	tail -n +$BEGINPOINT tempcurl > tempcut
+	ENDPOINT=$(grep -nr "\*\*\* END OF" tempcut | cut -d : -f 2)
+	((ENDPOINT=$ENDPOINT-10))
+	split -l $ENDPOINT tempcut
+	grep -o -E '\w+' xaa  > tempwords
+	rm x*
+	split -l $LINESPLIT tempwords
+else
+	echo "Licence wasn't removed because $1 wasn't from Project Gutemberg"
+fi
+
+# Pasting all columns into one textfile
+
+paste x* > columns.txt
+rm temp*
+rm x*
+exit
