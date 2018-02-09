@@ -133,13 +133,26 @@ function getLit(x,sheet)
 
 
     // Third poem based on least and most used words
-    var leastMost = onlyOnce.concat(manyTimes);
-    shuffle(leastMost);
-    x.append(["<p>--------------------------3----------------------</p>","<p>"]);
-    for (var l in leastMost)
-        x.append(leastMost[l]+" ")
-    x.append("</p>");
+    //var leastMost = onlyOnce.concat(manyTimes);
+    //shuffle(leastMost);
+    //x.append(["<p>--------------------------3----------------------</p>","<p>"]);
+    //for (var l in leastMost)
+    //    x.append(leastMost[l]+" ")
+    //x.append("</p>");
+    
 
+    // Third poem based on least and most used words
+    //var leastMost = onlyOnce.concat(manyTimes);
+    //shuffle(leastMost);
+    x.append(["<p>--------------------------3----------------------</p>","<p>"]);
+    for (var i = 0; i <= (rtimeMake(256)+10); i++) { 
+        if (0.2 <= Math.random())
+          var myword = manyTimes[rtimeMake(manyTimes.length)];
+        else
+          var myword = onlyOnce[rtimeMake(onlyOnce.length)];
+        x.append(myword+" ")
+    }
+    x.append("</p>");
 
   });
 }
