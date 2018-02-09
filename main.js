@@ -145,12 +145,30 @@ function getLit(x,sheet)
     //var leastMost = onlyOnce.concat(manyTimes);
     //shuffle(leastMost);
     x.append(["<p>--------------------------3----------------------</p>","<p>"]);
-    for (var i = 0; i <= (rtimeMake(256)+10); i++) { 
+    var thirdLength = (rtimeMake(256)+10);
+    var thirdPoem=[];
+    for (var i = 0; i <= thirdLength; i++) { 
+        var xpos = rtimeMake(w/2) + w/2;
+        var ypos = rtimeMake(20);
+        var fsize = Math.random()*2 + 0.8;
+
         if (0.5 <= Math.random())
           var myword = manyTimes[rtimeMake(manyTimes.length)];
         else
           var myword = onlyOnce[rtimeMake(onlyOnce.length)];
-        x.append(myword+" ")
+
+        var wording = "<span style=\"font-size:"+fsize+"em;\
+                                margin-left:"+xpos+"px;\
+                                margin-top:"+ypos+"px\">" + myword + "</span>";
+        if (i%rtimeMake(20)){
+          x.append(thirdPoem)
+          thirdPoem=[];
+        } else
+          thirdPoem.push(wording);
+    }
+    if(thirdPoem.length) {
+        x.append(thirdPoem)
+        thirdPoem=[];
     }
     x.append("</p>");
 
