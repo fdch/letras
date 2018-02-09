@@ -146,13 +146,17 @@ function getLit(x,sheet)
     //shuffle(leastMost);
     x.append(["<p>--------------------------3----------------------</p>","<p>"]);
     for (var i = 0; i <= (rtimeMake(256)+10); i++) { 
-        if (0.2 <= Math.random())
+        if (0.8 <= Math.random())
           var myword = manyTimes[rtimeMake(manyTimes.length)];
         else
           var myword = onlyOnce[rtimeMake(onlyOnce.length)];
         x.append(myword+" ")
     }
     x.append("</p>");
+
+    x.append(["<p>--------------------------list----------------------</p>","<p>"]);
+    for (var i in listFreq)
+      x.append(listFreq[i]);
 
   });
 }
