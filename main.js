@@ -79,13 +79,24 @@ function getLit(x,sheet)
     var values = Object.values(counts);
     cSorted = Object.keys(counts).sort(function(a,b){return counts[a]-counts[b]})
     var max_val = Math.max(...values);
+    var wordsLength = words.length();
+    var poemProbs=[];
     for (var j in counts)
-      if (counts[j] > 1){
+      if (1) { //could be useful to limit this
+        var probs = counts[j]/wordsLength * 100;
         var fontsize = counts[j]/max_val * 2 + 1;
-        x.append("<p style=font-size:"+fontsize+"em>"+j+": " +counts[j]);
-      }
+        x.append("<p style=font-size:"+fontsize+"em>"+j+": " +counts[j]+" | "+probs+" %");
+        if (probs >= Math.random()*100) {
+          poemProbs.push(j);
+        }
+    }
     for (var k in poem)
         x.append(poem[k]);
+    //Second poem based on probabilities
+    x.append("<p>");
+    for (var l in poemProbs)
+        x.append(poemProbs[l]+" ")
+    x.append("</p>");
 
   });
 }
