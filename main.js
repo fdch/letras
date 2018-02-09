@@ -42,26 +42,37 @@ function getLit(x,sheet)
 {
   loadJSON(sheet, function(response) {
   	var poem=[];
+    var words=[];
     var f = JSON.parse(response);
     var entry = f.feed.entry;
     for (var i in entry)
     {
     	var e = entry[i];
     	var word = e.gsx$a.$t;
-    	var thres1 = 4;
-		var randomNumber = Math.random() * 10000;
-		if (randomNumber < thres1) {
-			var xpos = rtimeMake(w/2) + w/2;
-			var ypos = rtimeMake(20);
-			var fsize = Math.random()*2 + 0.8;
+      words.push(word);
+    	
+      var thres1 = 4;
+		  var randomNumber = Math.random() * 10000;
+		  if (randomNumber < thres1) {
+			  var xpos = rtimeMake(w/2) + w/2;
+			  var ypos = rtimeMake(20);
+			  var fsize = Math.random()*2 + 0.8;
+        var wording = "<p style=\"font-size:"+fsize+"em;\
+                                margin-left:"+xpos+"px;\
+                                margin-top:"+ypos+"px\">" + word + "</p>";
+  	    poem.push(wording);
+		  }
+    }
+    var counts = {};
+    words.forEach(function(x) { counts[x] = (counts[x] || 0)+1; });
 
-   	  		var wording = "<p style=\"font-size:"+fsize+"em;margin-left:"+xpos+"px;margin-top:"+ypos+"px\">" + word + "</p>";
-  	  		poem.push(wording);
-		}
+    for (var j in counts){
+        x.append(counts[j]);
     }
     for (var k in poem){
         x.append(poem[k]);
-      }
+    }
+
   });
 }
 
