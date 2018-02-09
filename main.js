@@ -127,9 +127,12 @@ function getLit(x,sheet)
     
     // Second poem based on probabilities
     x.append(["<p>--------------------------2----------------------</p>","<p>"]);
-    for (var l in poemProbs)
-        x.append(poemProbs[l]+" ")
-    x.append("</p>");
+    for (var l in poemProbs){
+      if (Math.random()>=0.4) {
+        x.append("<p></p>");
+      }
+      x.append(poemProbs[l]+" ")
+    }x.append("</p>");
 
 
     // Third poem based on least and most used words
