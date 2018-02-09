@@ -19,8 +19,11 @@ function firstPoem (tar,src) {
 }
 
 function getFrequencies () {
-// Second poem
+// Second poem based on frequency-based probabilities
+// Get frequency of occurence of a word in words[],
+// into the object "counts"
   countFreq(words, counts);
+
   var max_val = maxValue(counts);
   var wordsLength = words.length;
   
@@ -29,6 +32,7 @@ function getFrequencies () {
     if (counts[j] > 200) { //could be useful to limit this
       var fontsize = counts[j]/max_val * 8 + 0.5;
       var stylish = "display:block;font-size:"+fontsize+"em";
+      // The large list of words with their freq of occurence
       listFreq.push("<span style=\""+stylish+"\">"+j+":" +counts[j]+"</span>");
     } else if (counts[j] <= 200) {
       onlyOnce.push(j);//least frequent
@@ -40,9 +44,39 @@ function getFrequencies () {
       poemProbs.push(j);
     }
   }
-
+}
+function secondPoem(tar,src){
+  for (var l in src){
+    if (Math.random()>=0.8)
+      tar.append("<span style=\"display:block;margin-top:"+(rtimeMake(20)-10)+"px;\"></span>");
+    tar.append(src[l]+" ")
+  }
 }
 
+function thirdPoem(tar,src,least,most){
+// Third poem based on least and most frequent words
+  for (var i = 0; i <= rtimeMake(30)+10; i++) { 
+    var xpos = rtimeMake(w/2) + w/2;
+    var ypos = rtimeMake(20);
+    var fsize = Math.random()*2 + 0.8;
+    if (0.5 <= Math.random())
+      var word = most[rtimeMake(most.length)];
+    else
+      var word = least[rtimeMake(least.length)];
+    var wording = "<p style=\"font-size:"+fsize+"em;\
+                            margin-left:"+xpos+"px;\
+                            margin-top:"+ypos+"px\">" + word + "</p>";
+    if (Math.random()>0.3){
+      tar.append(src)
+      src=[];
+    } else
+      stc.push(wording);
+  }
+  if(src.length) {
+      tar.append(src)
+      src=[];
+  }
+}
 
 function getLit(x,sheet)
 {
@@ -61,71 +95,11 @@ function getLit(x,sheet)
     
     
     firstPoem(x,words);
+    getFrequencies();
+    secondPoem(x,poemProbs);
+    thirdPoem(x,thirdPoem,onlyOnce,manyTimes);
+    x.append(listFreq);
 
-
-    // Second poem based on frequency-based probabilities
-
-    // Get frequency of occurence of a word in words[],
-    // into the object "counts"
-
-    
-    
-    //x.append(["<p>--------------------------2----------------------</p>","<p>"]);
-    for (var l in poemProbs){
-      if (Math.random()>=0.8) {
-        x.append("<span style=\"display:block;margin-top:"+(rtimeMake(20)-10)+"px;\"></span>");
-      }
-      x.append(poemProbs[l]+" ")
-    }x.append("</p>");
-
-
-    // Third poem based on least and most used words
-
-
-    //var leastMost = onlyOnce.concat(manyTimes);
-    //shuffle(leastMost);
-    //x.append(["<p>--------------------------3----------------------</p>","<p>"]);
-    //for (var l in leastMost)
-    //    x.append(leastMost[l]+" ")
-    //x.append("</p>");
-    
-
-
-    //var leastMost = onlyOnce.concat(manyTimes);
-    //shuffle(leastMost);
-    //x.append(["<p>--------------------------3----------------------</p>","<p>"]);
-    var thirdLength = (rtimeMake(30)+10);
-    
-    for (var i = 0; i <= thirdLength; i++) { 
-        var xpos = rtimeMake(w/2) + w/2;
-        var ypos = rtimeMake(20);
-        var fsize = Math.random()*2 + 0.8;
-
-        if (0.5 <= Math.random())
-          var myword = manyTimes[rtimeMake(manyTimes.length)];
-        else
-          var myword = onlyOnce[rtimeMake(onlyOnce.length)];
-
-        var wording = "<p style=\"font-size:"+fsize+"em;\
-                                margin-left:"+xpos+"px;\
-                                margin-top:"+ypos+"px\">" + myword + "</p>";
-        if (Math.random()>0.3){
-          x.append(thirdPoem)
-          thirdPoem=[];
-        } else
-          thirdPoem.push(wording);
-    }
-    if(thirdPoem.length) {
-        x.append(thirdPoem)
-        thirdPoem=[];
-    }
-    x.append("</p>");
-
-    // The large list of words with their freq of occurence
-
-    //x.append(["<p>--------------------------list----------------------</p>","<p>"]);
-    for (var i in listFreq)
-      x.append(listFreq[i]);
 
   });
 }

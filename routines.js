@@ -51,7 +51,9 @@ function maxValue(source){
 //cSorted = Object.keys(counts).sort(function(a,b){return counts[a]-counts[b]})
 
 
-
+function appendTarget(tar,src){
+  for (var i in srcc) tar.append(src[i]);
+}
 
 
 
