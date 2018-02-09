@@ -38,9 +38,9 @@ function shuffle(a) {
     }
 }
 
-function countFreq(target,source) {
-// source is an array, target is an object
-  source.forEach(function(x) { target[x] = (target[x] || 0)+1; });
+function countFreq(tar,src) {
+// src is an array, target is an object
+  Array.src.forEach(function(x) { tar[x] = (tar[x] || 0)+1; });
 }
 
 function maxValue(source){
