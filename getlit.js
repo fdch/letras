@@ -99,10 +99,10 @@ function getLit(x,sheet)
 //x.append(listFreq)
 
 var poems = [
-firstPoem(x,words),
+firstPoem($("#content"),words),
 getFrequencies(),
-secondPoem(x,poemProbs),
-thirdPoem(x,tercerPoem,onlyOnce,manyTimes)
+secondPoem($("#content"),poemProbs),
+thirdPoem($("#content"),tercerPoem,onlyOnce,manyTimes)
 ];
 
 
