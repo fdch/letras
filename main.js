@@ -80,10 +80,10 @@ function getLit(x,sheet)
     //counts.sort();
     var max_val = Math.max(...values);
     for (var j in counts)
-      if (counts[j] > 1)
+      if (counts[j] > 1){
         var fontsize = counts[j]/max_val * 2 + 1;
         x.append("<p style=font-size:"+fontsize+"em>"+j+": " +counts[j]);
-
+      }
     for (var k in poem)
         x.append(poem[k]);
 
