@@ -81,7 +81,8 @@ function getLit(x,sheet)
     var max_val = Math.max(...values);
     for (var j in counts)
       if (counts[j] > 1)
-        x.append("<p style=font-size:"+counts[j]/max_val*2+1+"em>"+j+": " +counts[j]);
+        var fontsize = counts[j]/max_val * 2 + 1;
+        x.append("<p style=font-size:"+fontsize+"em>"+j+": " +counts[j]);
 
     for (var k in poem)
         x.append(poem[k]);
