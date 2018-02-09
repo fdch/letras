@@ -70,7 +70,7 @@ function thirdPoem(tar,src,least,most){
       tar.append(src)
       src=[];
     } else
-      stc.push(wording);
+      src.push(wording);
   }
   if(src.length) {
       tar.append(src)
