@@ -76,14 +76,14 @@ function getLit(x,sheet)
     }
     var counts = {};
     words.forEach(function(x) { counts[x] = (counts[x] || 0)+1; });
+    counts.sort();
+    var max_val = Math.max.apply(Math, counts);
+    for (var j in counts)
+      if (counts[j] > 1)
+        x.append("<p style=font-size:"+count[j]/max_val*2+1+"em>"+j+": " +counts[j]);
 
-    for (var j in counts){
-        var cell = "<p>" + words[j] + "["+j+"]: " +counts[j]+".";
-        x.append(cell);
-    }
-    for (var k in poem){
+    for (var k in poem)
         x.append(poem[k]);
-    }
 
   });
 }
