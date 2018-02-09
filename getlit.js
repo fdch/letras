@@ -1,11 +1,9 @@
-var poem=[];
-var words=[];
+var poem=[], words=[];
 var thirdPoem=[];
 var poemProbs=[];
 var listFreq=[];
 var onlyOnce=[];
 var manyTimes=[];
-
 var thres = [3,10000];
 var counts = {};
 
@@ -16,7 +14,7 @@ function firstPoem (tar,src) {
       var xpos = "margin-left:"+(rtimeMake(w/2) + w/2)+"px;";
       var ypos = "margin-top:"+rtimeMake(20)+"px;";
       var fsize = "font-size:"+(Math.random()*2 + 0.8)+"em;";
-      tar.append(["<p style=\"",fsize,xpos,ypos,"\">",src[i],"</p>"]);
+      tar.append("<p style=\""+fsize+xpos+ypos+"\">"+src[i]+"</p>");
     }
 }
 
