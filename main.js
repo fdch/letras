@@ -111,9 +111,9 @@ function getLit(x,sheet)
     for (var j in counts) {
       var probs = counts[j]/wordsLength * 100;
       if (counts[j] > 1) { //could be useful to limit this
-        var fontsize = counts[j]/max_val * 2 + 1;
+        var fontsize = counts[j]/max_val * 5 + 0.8;
         var stylish = "display:block;font-size:"+fontsize+"em";
-        listFreq.push("<span style=\""+stylish+"\">"+j+": " +counts[j]+" | "+probs+" %</span>");
+        listFreq.push("<span style=\""+stylish+"\">"+j+": " +counts[j]+" | "+Math.floor(probs*100)+" permil</span>");
       } else if (counts[j] == 1) {
         onlyOnce.push(j);
       }
