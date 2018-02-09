@@ -78,6 +78,13 @@ function thirdPoem(tar,src,least,most){
   }
 }
 
+function callPoems(x){
+  firstPoem(x,words);
+  getFrequencies();
+  secondPoem(x,poemProbs);
+  thirdPoem(x,tercerPoem,onlyOnce,manyTimes);
+}
+
 function getLit(x,sheet)
 {
   loadJSON(sheet, function(response) {
@@ -92,15 +99,10 @@ function getLit(x,sheet)
       var jj = e.gsx$jj.$t;
       words.push(aa,bb,cc,dd,ee,ff,gg,hh,ii,jj);
     }
-    
+    callPoems(x);
   });
 }
-function callPoems(x){
-  firstPoem(x,words);
-  getFrequencies();
-  secondPoem(x,poemProbs);
-  thirdPoem(x,tercerPoem,onlyOnce,manyTimes);
-}
+
 
 
 //x.append(listFreq)
@@ -110,7 +112,7 @@ $(document).ready(function(x) {
   h = $(window).height();
   $("body").append(containers);
   getLit($("#content"),lit);
-  callPoems($("#content"));
+  //callPoems($("#content"));
 });
 
 
