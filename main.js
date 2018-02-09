@@ -95,6 +95,13 @@ function getLit(x,sheet)
     
   });
 }
+function callPoems(x){
+  firstPoem(x,words);
+  getFrequencies();
+  secondPoem(x,poemProbs);
+  thirdPoem(x,tercerPoem,onlyOnce,manyTimes);
+}
+
 
 //x.append(listFreq)
 
@@ -103,14 +110,7 @@ $(document).ready(function(x) {
   h = $(window).height();
   $("body").append(containers);
   getLit($("#content"),lit);
-  firstPoem($("#content"),words);
-  getFrequencies();
-  secondPoem($("#content"),poemProbs);
-  thirdPoem($("#content"),tercerPoem,onlyOnce,manyTimes);
-  firstPoem($("#content"),words);
-  getFrequencies();
-  secondPoem($("#content"),poemProbs);
-  thirdPoem($("#content"),tercerPoem,onlyOnce,manyTimes);
+  callPoems($("#content"));
 });
 
 
