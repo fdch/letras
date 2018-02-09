@@ -99,7 +99,7 @@ function getLit(x,sheet)
       var jj = e.gsx$jj.$t;
       words.push(aa,bb,cc,dd,ee,ff,gg,hh,ii,jj);
     }
-    callPoems(x);
+    for (var i=0; i<rtimeMake(20)+1;i++)callPoems(x);
   });
 }
 
