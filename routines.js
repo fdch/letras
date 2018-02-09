@@ -38,10 +38,6 @@ function shuffle(a) {
     }
 }
 
-function countFreq(tar,src) {
-// src is an array, target is an object
-  Array.src.forEach(function(x) { tar[x] = (tar[x] || 0)+1; });
-}
 
 function maxValue(source){
 // get maximum value of an object
