@@ -160,7 +160,7 @@ function getLit(x,sheet)
         var wording = "<span style=\"font-size:"+fsize+"em;\
                                 margin-left:"+xpos+"px;\
                                 margin-top:"+ypos+"px\">" + myword + "</span>";
-        if (i%rtimeMake(20)){
+        if (Math.random()>0.3){
           x.append(thirdPoem)
           thirdPoem=[];
         } else
