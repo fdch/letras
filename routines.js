@@ -1,16 +1,13 @@
 
-function linkify(x)
-{
+function linkify(x) {
   return(x.replace(/ /g,"_").toLowerCase());
 }
 
-function makeHref(x)
-{
+function makeHref(x) {
   return("<a href=\"#"+linkify(x)+"\">"+x+" </a>");
 }
 
-function loadJSON(x,callback)
-{
+function loadJSON(x,callback) {
   var xobj = new XMLHttpRequest();
   xobj.overrideMimeType("application/json");
   xobj.open('GET', x, true);
@@ -22,8 +19,7 @@ function loadJSON(x,callback)
   xobj.send(null);  
 }
 
-function rtimeMake(x)
-{
+function rtimeMake(x) {
 	return(Math.floor(Math.random()*x));
 }
 
@@ -41,3 +37,33 @@ function shuffle(a) {
         a[j] = x;
     }
 }
+
+function countFreq(target,source) {
+// source is an array, target is an object
+  source.forEach(function(x) { target[x] = (target[x] || 0)+1; });
+}
+
+function maxValue(source){
+// get maximum value of an object
+    return (Math.max(...Object.values(source)));
+}
+
+//cSorted = Object.keys(counts).sort(function(a,b){return counts[a]-counts[b]})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

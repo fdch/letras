@@ -9,19 +9,42 @@ var manyTimes=[];
 var thres = [3,10000];
 var counts = {};
 
-function firstPoem (target,source) {
+function firstPoem (tar,src) {
 // First poem based on random probabilities
-  var randomNumber = Math.random() * thres[1];
-  if (randomNumber < thres[0]) {
-    var xpos = rtimeMake(w/2) + w/2;
-    var ypos = rtimeMake(20);
-    var fsize = Math.random()*2 + 0.8;
-    var wording = "<p style=\"font-size:"+fsize+"em;\
-                            margin-left:"+xpos+"px;\
-                            margin-top:"+ypos+"px\">" + source[rtimeMake(source.length)] + "</p>";
-    target.push(wording);
-  }
+  for (var i=0; i < words.length; i++)
+    if ((Math.random() * thres[1]) < thres[0]) {
+      var xpos = "margin-left:"+(rtimeMake(w/2) + w/2)+"px;";
+      var ypos = "margin-top:"+rtimeMake(20)+"px;";
+      var fsize = "font-size:"+(Math.random()*2 + 0.8)+"em;";
+      tar.append(["<p style=\"",fsize,xpos,ypos,"\">",src[i],"</p>"]);
+    }
 }
+
+function getFrequencies () {
+// Second poem
+  countFreq(words, counts);
+  var max_val = maxValue(counts);
+  var wordsLength = words.length;
+  
+  for (var j in counts) {
+    var probs = counts[j]/wordsLength * 100;
+    if (counts[j] > 200) { //could be useful to limit this
+      var fontsize = counts[j]/max_val * 8 + 0.5;
+      var stylish = "display:block;font-size:"+fontsize+"em";
+      listFreq.push("<span style=\""+stylish+"\">"+j+":" +counts[j]+"</span>");
+    } else if (counts[j] <= 200) {
+      onlyOnce.push(j);//least frequent
+    }
+    if (counts[j] >= 5000){
+      manyTimes.push(j);//most frequent
+    }
+    if (probs >= Math.random()) {
+      poemProbs.push(j);
+    }
+  }
+
+}
+
 
 function getLit(x,sheet)
 {
@@ -31,52 +54,22 @@ function getLit(x,sheet)
     var entry = f.feed.entry;
     for (var i in entry) {
     	var e  = entry[i];
-      var aa = e.gsx$aa.$t;
-      var bb = e.gsx$bb.$t;
-      var cc = e.gsx$cc.$t;
-      var dd = e.gsx$dd.$t;
-      var ee = e.gsx$ee.$t;
-      var ff = e.gsx$ff.$t;
-      var gg = e.gsx$gg.$t;
-      var hh = e.gsx$hh.$t;
-      var ii = e.gsx$ii.$t;
+      var aa = e.gsx$aa.$t; var bb = e.gsx$bb.$t; var cc = e.gsx$cc.$t;
+      var dd = e.gsx$dd.$t; var ee = e.gsx$ee.$t; var ff = e.gsx$ff.$t;
+      var gg = e.gsx$gg.$t; var hh = e.gsx$hh.$t; var ii = e.gsx$ii.$t; 
       var jj = e.gsx$jj.$t;
       words.push(aa,bb,cc,dd,ee,ff,gg,hh,ii,jj);
     }
     
-    firstPoem(poem,words);
-    for (var k in poem) x.append(poem[k]);
+    
+    firstPoem(x,words);
 
 
     // Second poem based on frequency-based probabilities
 
-    // Get frequency of occurence of a word in words[], into the object "counts"
-    
-    words.forEach(function(x) { counts[x] = (counts[x] || 0)+1; });
+    // Get frequency of occurence of a word in words[],
+    // into the object "counts"
 
-
-    var values = Object.values(counts);
-    //cSorted = Object.keys(counts).sort(function(a,b){return counts[a]-counts[b]})
-
-    var max_val = Math.max(...values);
-    var wordsLength = words.length;
-    
-    for (var j in counts) {
-      var probs = counts[j]/wordsLength * 100;
-      if (counts[j] > 200) { //could be useful to limit this
-        var fontsize = counts[j]/max_val * 8 + 0.5;
-        var stylish = "display:block;font-size:"+fontsize+"em";
-        listFreq.push("<span style=\""+stylish+"\">"+j+":" +counts[j]+"</span>");
-      } else if (counts[j] <= 200) {
-        onlyOnce.push(j);//least frequent
-      }
-      if (counts[j] >= 5000){
-        manyTimes.push(j);//most frequent
-      }
-      if (probs >= Math.random()) {
-        poemProbs.push(j);
-      }
-    }
     
     
     //x.append(["<p>--------------------------2----------------------</p>","<p>"]);
