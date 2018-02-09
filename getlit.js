@@ -4,7 +4,7 @@ var poemProbs=[];
 var listFreq=[];
 var onlyOnce=[];
 var manyTimes=[];
-var thres = [3,10000];
+var thres = [1,10000];
 var counts = {};
 
 function firstPoem (tar,src) {
