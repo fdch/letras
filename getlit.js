@@ -9,14 +9,27 @@ var manyTimes=[];
 var thres = [3,10000];
 var counts = {};
 
+function firstPoem (target,source) {
+// First poem based on random probabilities
+  var randomNumber = Math.random() * thres[1];
+  if (randomNumber < thres[0]) {
+    var xpos = rtimeMake(w/2) + w/2;
+    var ypos = rtimeMake(20);
+    var fsize = Math.random()*2 + 0.8;
+    var wording = "<p style=\"font-size:"+fsize+"em;\
+                            margin-left:"+xpos+"px;\
+                            margin-top:"+ypos+"px\">" + source[rtimeMake(source.length)] + "</p>";
+    target.push(wording);
+  }
+}
+
 function getLit(x,sheet)
 {
   loadJSON(sheet, function(response) {
   	
     var f = JSON.parse(response);
     var entry = f.feed.entry;
-    for (var i in entry)
-    {
+    for (var i in entry) {
     	var e  = entry[i];
       var aa = e.gsx$aa.$t;
       var bb = e.gsx$bb.$t;
@@ -29,25 +42,10 @@ function getLit(x,sheet)
       var ii = e.gsx$ii.$t;
       var jj = e.gsx$jj.$t;
       words.push(aa,bb,cc,dd,ee,ff,gg,hh,ii,jj);
-
-    	// First poem based on random probabilities
-      
-		  var randomNumber = Math.random() * thres[1];
-		  if (randomNumber < thres[0]) {
-			  var xpos = rtimeMake(w/2) + w/2;
-			  var ypos = rtimeMake(20);
-			  var fsize = Math.random()*2 + 0.8;
-        var wording = "<p style=\"font-size:"+fsize+"em;\
-                                margin-left:"+xpos+"px;\
-                                margin-top:"+ypos+"px\">" + words[rtimeMake(words.length)] + "</p>";
-  	    poem.push(wording);
-		  }
     }
-
     
-    //x.append(["<p>--------------------------1----------------------</p>","<p>"]);
-    for (var k in poem)
-        x.append(poem[k]);
+    firstPoem(poem,words);
+    for (var k in poem) x.append(poem[k]);
 
 
     // Second poem based on frequency-based probabilities
