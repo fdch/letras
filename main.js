@@ -77,12 +77,12 @@ function getLit(x,sheet)
     var counts = {};
     words.forEach(function(x) { counts[x] = (counts[x] || 0)+1; });
     var values = Object.values(counts);
-    //counts.sort();
+    cSorted = Object.keys(counts).sort(function(a,b){return counts[a]-counts[b]})
     var max_val = Math.max(...values);
-    for (var j in counts)
-      if (counts[j] > 1){
-        var fontsize = counts[j]/max_val * 2 + 1;
-        x.append("<p style=font-size:"+fontsize+"em>"+j+": " +counts[j]);
+    for (var j in cSorted)
+      if (cSorted[j] > 1){
+        var fontsize = cSorted[j]/max_val * 2 + 1;
+        x.append("<p style=font-size:"+fontsize+"em>"+j+": " +cSorted[j]);
       }
     for (var k in poem)
         x.append(poem[k]);
