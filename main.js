@@ -129,7 +129,7 @@ function getLit(x,sheet)
     //x.append(["<p>--------------------------2----------------------</p>","<p>"]);
     for (var l in poemProbs){
       if (Math.random()>=0.8) {
-        x.append("<span style=\"display:block;margin-top:"+rtimeMake(100)+"px;\"></span>");
+        x.append("<span style=\"display:block;margin-top:"+(rtimeMake(20)-10)+"px;\"></span>");
       }
       x.append(poemProbs[l]+" ")
     }x.append("</p>");
