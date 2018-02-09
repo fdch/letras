@@ -8,6 +8,8 @@ var spreadsheetID = "1umuxkyz_4xrxgX_qS-tmOMK7CqGuNS67KFzRhFGuP5A/";
 var containers = "<div id=content></div>";
 var lit = https + spreadsheetID + "2" + altjson;
 
+//https://spreadsheets.google.com/feeds/list/1umuxkyz_4xrxgX_qS-tmOMK7CqGuNS67KFzRhFGuP5A/2/public/values?alt=json
+
 function linkify(x)
 {
   return(x.replace(/ /g,"_").toLowerCase());
@@ -48,10 +50,19 @@ function getLit(x,sheet)
     for (var i in entry)
     {
     	var e = entry[i];
-    	var word = e.gsx$a.$t;
-      words.push(word);
+      var aa = e.gsx$aa.$t;
+      var bb = e.gsx$bb.$t;
+      var cc = e.gsx$cc.$t;
+      var dd = e.gsx$dd.$t;
+      var ee = e.gsx$ee.$t;
+      var ff = e.gsx$ff.$t;
+      var gg = e.gsx$gg.$t;
+      var hh = e.gsx$hh.$t;
+      var ii = e.gsx$ii.$t;
+      var jj = e.gsx$jj.$t;
+      words.push(aa,bb,cc,dd,ee,ff,gg,hh,ii,jj);
     	
-      var thres1 = 4;
+      var thres1 = 1;
 		  var randomNumber = Math.random() * 10000;
 		  if (randomNumber < thres1) {
 			  var xpos = rtimeMake(w/2) + w/2;
@@ -67,7 +78,8 @@ function getLit(x,sheet)
     words.forEach(function(x) { counts[x] = (counts[x] || 0)+1; });
 
     for (var j in counts){
-        x.append(counts[j]);
+        var cell = "<p>" + words[j] + "["+j+"]: " +counts[j]+".";
+        x.append(cell);
     }
     for (var k in poem){
         x.append(poem[k]);
