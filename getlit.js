@@ -93,13 +93,21 @@ function getLit(x,sheet)
       words.push(aa,bb,cc,dd,ee,ff,gg,hh,ii,jj);
     }
     
-    
-    firstPoem(x,words);
-    getFrequencies();
-    secondPoem(x,poemProbs);
-    thirdPoem(x,tercerPoem,onlyOnce,manyTimes);
-    //x.append(listFreq);
-
-
   });
 }
+
+//x.append(listFreq)
+
+var poems = [
+firstPoem(x,words),
+getFrequencies(),
+secondPoem(x,poemProbs),
+thirdPoem(x,tercerPoem,onlyOnce,manyTimes)
+];
+
+
+
+
+
+
+

@@ -3,4 +3,6 @@ $(document).ready(function(x) {
   h = $(window).height();
   $("body").append(containers);
   getLit($("#content"),lit);
+  for (var i=0; i<=rtimeMake(20)+4; i++)
+  	poems[i%4];
 });
