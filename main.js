@@ -75,7 +75,7 @@ function getLit(x,sheet)
       var jj = e.gsx$jj.$t;
       words.push(aa,bb,cc,dd,ee,ff,gg,hh,ii,jj);
     	
-      var thres1 = 1;
+      var thres1 = 3;
 		  var randomNumber = Math.random() * 10000;
 		  if (randomNumber < thres1) {
 			  var xpos = rtimeMake(w/2) + w/2;
@@ -110,15 +110,15 @@ function getLit(x,sheet)
 
     for (var j in counts) {
       var probs = counts[j]/wordsLength * 100;
-      if (counts[j] > 1) { //could be useful to limit this
+      if (counts[j] > 200) { //could be useful to limit this
         var fontsize = counts[j]/max_val * 5 + 0.8;
         var stylish = "display:block;font-size:"+fontsize+"em";
         listFreq.push("<span style=\""+stylish+"\">"+j+": " +counts[j]+" | "+Math.floor(probs*100)+" permil</span>");
-      } else if (counts[j] == 1) {
-        onlyOnce.push(j);
+      } else if (counts[j] <= 200) {
+        onlyOnce.push(j);//least frequent
       }
       if (counts[j] >= 5000){
-        manyTimes.push(j);
+        manyTimes.push(j);//most frequent
       }
       if (probs >= Math.random()) {
         poemProbs.push(j);
@@ -157,9 +157,9 @@ function getLit(x,sheet)
         else
           var myword = onlyOnce[rtimeMake(onlyOnce.length)];
 
-        var wording = "<span style=\"font-size:"+fsize+"em;\
+        var wording = "<p style=\"font-size:"+fsize+"em;\
                                 margin-left:"+xpos+"px;\
-                                margin-top:"+ypos+"px\">" + myword + "</span>";
+                                margin-top:"+ypos+"px\">" + myword + "</p>";
         if (Math.random()>0.3){
           x.append(thirdPoem)
           thirdPoem=[];
