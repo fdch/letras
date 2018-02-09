@@ -79,10 +79,10 @@ function getLit(x,sheet)
     var values = Object.values(counts);
     cSorted = Object.keys(counts).sort(function(a,b){return counts[a]-counts[b]})
     var max_val = Math.max(...values);
-    for (var j in cSorted)
-      if (cSorted[j] > 1){
-        var fontsize = cSorted[j]/max_val * 2 + 1;
-        x.append("<p style=font-size:"+fontsize+"em>"+j+": " +cSorted[j]);
+    for (var j in counts)
+      if (counts[j] > 1){
+        var fontsize = counts[j]/max_val * 2 + 1;
+        x.append("<p style=font-size:"+fontsize+"em>"+j+": " +counts[j]);
       }
     for (var k in poem)
         x.append(poem[k]);
