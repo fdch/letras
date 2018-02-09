@@ -79,7 +79,7 @@ function getLit(x,sheet)
     var values = Object.values(counts);
     cSorted = Object.keys(counts).sort(function(a,b){return counts[a]-counts[b]})
     var max_val = Math.max(...values);
-    var wordsLength = words.length();
+    var wordsLength = words.length;
     var poemProbs=[];
     for (var j in counts)
       if (1) { //could be useful to limit this
