@@ -52,8 +52,8 @@ function getLit(x,sheet)
 		var randomNumber = Math.random() * 10000;
 		if (randomNumber < thres1) {
 			var xpos = rtimeMake(w/2) + w/2;
-			var ypos = rtimeMake(10);
-			var fsize = Math.random()*2;
+			var ypos = rtimeMake(20);
+			var fsize = Math.random()*2 + 0.8;
 
    	  		var wording = "<p style=\"font-size:"+fsize+"em;margin-left:"+xpos+"px;margin-top:"+ypos+"px\">" + word + "</p>";
   	  		poem.push(wording);
