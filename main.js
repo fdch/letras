@@ -111,7 +111,7 @@ function getLit(x,sheet)
     for (var j in counts) {
       var probs = counts[j]/wordsLength * 100;
       if (counts[j] > 200) { //could be useful to limit this
-        var fontsize = counts[j]/max_val * 5 + 0.8;
+        var fontsize = counts[j]/max_val * 8 + 0.5;
         var stylish = "display:block;font-size:"+fontsize+"em";
         listFreq.push("<span style=\""+stylish+"\">"+j+": " +counts[j]+" | "+Math.floor(probs*100)+" permil</span>");
       } else if (counts[j] <= 200) {
@@ -145,7 +145,7 @@ function getLit(x,sheet)
     //var leastMost = onlyOnce.concat(manyTimes);
     //shuffle(leastMost);
     x.append(["<p>--------------------------3----------------------</p>","<p>"]);
-    var thirdLength = (rtimeMake(256)+10);
+    var thirdLength = (rtimeMake(30)+10);
     var thirdPoem=[];
     for (var i = 0; i <= thirdLength; i++) { 
         var xpos = rtimeMake(w/2) + w/2;
