@@ -89,7 +89,7 @@ function getLit(x,sheet)
     }
 
     // First poem based on predefined probabilities
-    x.append(["<p>--------------------------1----------------------</p>","<p>"]);
+    //x.append(["<p>--------------------------1----------------------</p>","<p>"]);
     for (var k in poem)
         x.append(poem[k]);
 
@@ -126,10 +126,10 @@ function getLit(x,sheet)
     }
     
     // Second poem based on probabilities
-    x.append(["<p>--------------------------2----------------------</p>","<p>"]);
+    //x.append(["<p>--------------------------2----------------------</p>","<p>"]);
     for (var l in poemProbs){
-      if (Math.random()>=0.4) {
-        x.append("<p></p>");
+      if (Math.random()>=0.8) {
+        x.append("<span style=\"display:block;margin-top:"+rtimeMake(100)+"px;\"></span>");
       }
       x.append(poemProbs[l]+" ")
     }x.append("</p>");
@@ -147,7 +147,7 @@ function getLit(x,sheet)
     // Third poem based on least and most used words
     //var leastMost = onlyOnce.concat(manyTimes);
     //shuffle(leastMost);
-    x.append(["<p>--------------------------3----------------------</p>","<p>"]);
+    //x.append(["<p>--------------------------3----------------------</p>","<p>"]);
     var thirdLength = (rtimeMake(30)+10);
     var thirdPoem=[];
     for (var i = 0; i <= thirdLength; i++) { 
@@ -175,7 +175,7 @@ function getLit(x,sheet)
     }
     x.append("</p>");
 
-    x.append(["<p>--------------------------list----------------------</p>","<p>"]);
+    //x.append(["<p>--------------------------list----------------------</p>","<p>"]);
     for (var i in listFreq)
       x.append(listFreq[i]);
 
