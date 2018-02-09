@@ -55,7 +55,7 @@ function secondPoem(tar,src){
 
 function thirdPoem(tar,src,least,most){
 // Third poem based on least and most frequent words
-  for (var i = 0; i <= rtimeMake(30)+10; i++) { 
+  for (var i = 0; i <= rtimeMake(60)+20; i++) { 
     var xpos = rtimeMake(w/2) + w/2;
     var ypos = rtimeMake(20);
     var fsize = Math.random()*2 + 0.8;
@@ -98,7 +98,7 @@ function getLit(x,sheet)
     getFrequencies();
     secondPoem(x,poemProbs);
     thirdPoem(x,tercerPoem,onlyOnce,manyTimes);
-    x.append(listFreq);
+    //x.append(listFreq);
 
 
   });
