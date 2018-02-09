@@ -113,7 +113,7 @@ function getLit(x,sheet)
       if (counts[j] > 200) { //could be useful to limit this
         var fontsize = counts[j]/max_val * 8 + 0.5;
         var stylish = "display:block;font-size:"+fontsize+"em";
-        listFreq.push("<span style=\""+stylish+"\">"+j+": " +counts[j]+" | "+Math.floor(probs*100)+" permil</span>");
+        listFreq.push("<span style=\""+stylish+"\">"+j+":" +counts[j]+"</span>");
       } else if (counts[j] <= 200) {
         onlyOnce.push(j);//least frequent
       }
