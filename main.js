@@ -76,8 +76,9 @@ function getLit(x,sheet)
     }
     var counts = {};
     words.forEach(function(x) { counts[x] = (counts[x] || 0)+1; });
-    counts.sort();
-    var max_val = Math.max.apply(Math, counts);
+    var values = Object.values(counts);
+    //counts.sort();
+    var max_val = Math.max(...values);
     for (var j in counts)
       if (counts[j] > 1)
         x.append("<p style=font-size:"+count[j]/max_val*2+1+"em>"+j+": " +counts[j]);
