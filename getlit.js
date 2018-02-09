@@ -1,14 +1,23 @@
+var poem=[];
+var words=[];
+var thirdPoem=[];
+var poemProbs=[];
+var listFreq=[];
+var onlyOnce=[];
+var manyTimes=[];
+
+var thres = [3,10000];
+var counts = {};
 
 function getLit(x,sheet)
 {
   loadJSON(sheet, function(response) {
-  	var poem=[];
-    var words=[];
+  	
     var f = JSON.parse(response);
     var entry = f.feed.entry;
     for (var i in entry)
     {
-    	var e = entry[i];
+    	var e  = entry[i];
       var aa = e.gsx$aa.$t;
       var bb = e.gsx$bb.$t;
       var cc = e.gsx$cc.$t;
@@ -22,9 +31,9 @@ function getLit(x,sheet)
       words.push(aa,bb,cc,dd,ee,ff,gg,hh,ii,jj);
 
     	// First poem based on random probabilities
-      var thres1 = 3;
-		  var randomNumber = Math.random() * 10000;
-		  if (randomNumber < thres1) {
+      
+		  var randomNumber = Math.random() * thres[1];
+		  if (randomNumber < thres[0]) {
 			  var xpos = rtimeMake(w/2) + w/2;
 			  var ypos = rtimeMake(20);
 			  var fsize = Math.random()*2 + 0.8;
@@ -44,7 +53,7 @@ function getLit(x,sheet)
     // Second poem based on frequency-based probabilities
 
     // Get frequency of occurence of a word in words[], into the object "counts"
-    var counts = {};
+    
     words.forEach(function(x) { counts[x] = (counts[x] || 0)+1; });
 
 
@@ -53,11 +62,7 @@ function getLit(x,sheet)
 
     var max_val = Math.max(...values);
     var wordsLength = words.length;
-    var poemProbs=[];
-    var listFreq=[];
-    var onlyOnce=[];
-    var manyTimes=[];
-
+    
     for (var j in counts) {
       var probs = counts[j]/wordsLength * 100;
       if (counts[j] > 200) { //could be useful to limit this
@@ -101,7 +106,7 @@ function getLit(x,sheet)
     //shuffle(leastMost);
     //x.append(["<p>--------------------------3----------------------</p>","<p>"]);
     var thirdLength = (rtimeMake(30)+10);
-    var thirdPoem=[];
+    
     for (var i = 0; i <= thirdLength; i++) { 
         var xpos = rtimeMake(w/2) + w/2;
         var ypos = rtimeMake(20);
