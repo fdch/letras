@@ -38,7 +38,20 @@ function rtimeMake(x)
 	return(Math.floor(Math.random()*x));
 }
 
-
+//from https://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array
+/**
+ * Shuffles array in place.
+ * @param {Array} a items An array containing the items.
+ */
+function shuffle(a) {
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+    }
+}
 
 function getLit(x,sheet)
 {
@@ -74,29 +87,59 @@ function getLit(x,sheet)
   	    poem.push(wording);
 		  }
     }
+
+    // First poem based on predefined probabilities
+    x.append(["<p>--------------------------1----------------------</p>","<p>"]);
+    for (var k in poem)
+        x.append(poem[k]);
+
+    // Get frequency of occurence of a word in words[], into the object "counts"
     var counts = {};
     words.forEach(function(x) { counts[x] = (counts[x] || 0)+1; });
+
+
     var values = Object.values(counts);
-    cSorted = Object.keys(counts).sort(function(a,b){return counts[a]-counts[b]})
+    //cSorted = Object.keys(counts).sort(function(a,b){return counts[a]-counts[b]})
+
     var max_val = Math.max(...values);
     var wordsLength = words.length;
     var poemProbs=[];
-    for (var j in counts)
-      if (1) { //could be useful to limit this
-        var probs = counts[j]/wordsLength * 100;
+    var listFreq=[];
+    var onlyOnce=[];
+    var manyTimes=[];
+
+    for (var j in counts) {
+      var probs = counts[j]/wordsLength * 100;
+      if (counts[j] > 1) { //could be useful to limit this
         var fontsize = counts[j]/max_val * 2 + 1;
-        x.append("<p style=font-size:"+fontsize+"em>"+j+": " +counts[j]+" | "+probs+" %");
-        if (probs >= Math.random()) {
-          poemProbs.push(j);
-        }
+        var stylish = "display:block;font-size:"+fontsize+"em";
+        listFreq.push("<span style=\""+stylish+"\">"+j+": " +counts[j]+" | "+probs+" %</span>");
+      } else if (counts[j] == 1) {
+        onlyOnce.push(j);
+      }
+      if (counts[j] >= 5000){
+        manyTimes.push(j);
+      }
+      if (probs >= Math.random()) {
+        poemProbs.push(j);
+      }
     }
-    for (var k in poem)
-        x.append(poem[k]);
-    //Second poem based on probabilities
-    x.append(["<p>------------------------------------------------</p>","<p>"]);
+    
+    // Second poem based on probabilities
+    x.append(["<p>--------------------------2----------------------</p>","<p>"]);
     for (var l in poemProbs)
         x.append(poemProbs[l]+" ")
     x.append("</p>");
+
+
+    // Third poem based on least and most used words
+    var leastMost = onlyOnce.concat(manyTimes);
+    shuffle(leastMost);
+    x.append(["<p>--------------------------3----------------------</p>","<p>"]);
+    for (var l in leastMost)
+        x.append(leastMost[l]+" ")
+    x.append("</p>");
+
 
   });
 }
