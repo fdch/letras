@@ -1,5 +1,5 @@
 var poem=[], words=[];
-var thirdPoem=[];
+var tercerPoem=[];
 var poemProbs=[];
 var listFreq=[];
 var onlyOnce=[];
@@ -97,7 +97,7 @@ function getLit(x,sheet)
     firstPoem(x,words);
     getFrequencies();
     secondPoem(x,poemProbs);
-    thirdPoem(x,thirdPoem,onlyOnce,manyTimes);
+    thirdPoem(x,tercerPoem,onlyOnce,manyTimes);
     x.append(listFreq);
 
 
