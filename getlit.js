@@ -22,7 +22,7 @@ function getFrequencies () {
 // Second poem based on frequency-based probabilities
 // Get frequency of occurence of a word in words[],
 // into the object "counts"
-  words.forEach(function(x) { counts[x] = (counts[x] || 0)+1; 
+  words.forEach(function(x) { counts[x] = (counts[x] || 0)+1}); 
 
   var max_val = maxValue(counts);
   var wordsLength = words.length;
