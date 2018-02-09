@@ -70,7 +70,7 @@ function getLit(x,sheet)
 			  var fsize = Math.random()*2 + 0.8;
         var wording = "<p style=\"font-size:"+fsize+"em;\
                                 margin-left:"+xpos+"px;\
-                                margin-top:"+ypos+"px\">" + word + "</p>";
+                                margin-top:"+ypos+"px\">" + words[rtimeMake(words.length)] + "</p>";
   	    poem.push(wording);
 		  }
     }
